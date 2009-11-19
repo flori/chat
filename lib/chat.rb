@@ -1,4 +1,3 @@
-$KCODE = 'UTF8'
 require 'json'
 require 'socket'
 require 'logger'
@@ -264,7 +263,7 @@ module Chat
       send_msg Go.new(room_name)
     end
 
-    def list_doors
+    def look
       send_msg ListDoors.new
     end
 
@@ -331,4 +330,3 @@ if $0 == __FILE__
     end
   end
 end
-  # vim: set et sw=2 ts=2:
