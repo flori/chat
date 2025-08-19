@@ -30,12 +30,12 @@ module Chat
         end
       end
 
-      def to_json
+      def to_json(*)
         hash = { 'json_class'  => self.class }
         self.class.fields.each do |f|
           hash[f] = instance_variable_get "@#{f}"
         end
-        hash.to_json
+        hash.to_json(*)
       end
     end
 

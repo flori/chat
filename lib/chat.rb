@@ -69,7 +69,7 @@ module Chat
     # Process the message <code>msg_json</code>, that has to be a JSON encoded
     # string.
     def process(msg_json)
-      msg = JSON.parse(msg_json)
+      msg = JSON.parse(msg_json, create_additions: true)
       Log.debug 'Proc: ' + msg_json
       login_related(msg) and return
       # Login for this connection was granted before
@@ -99,7 +99,7 @@ module Chat
     def recv_msg
       line = readline.chomp
       Log.debug 'Recv: ' + line
-      JSON.parse(line)
+      JSON.parse(line, create_additions: true)
     end
   end
 
@@ -298,7 +298,7 @@ if $0 == __FILE__
       Thread.new do
         begin
           loop do
-            msg = c.recv_msg 
+            msg = c.recv_msg
             case msg
             when KeepAlive
               c.send_msg Alive.new
